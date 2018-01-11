@@ -34,6 +34,7 @@ python-dateutil==2.6.1
 pyzmq==16.0.3
 qtconsole==4.3.1
 requests==2.18.4
+selenium==3.8.1
 simplegeneric==0.8.1
 six==1.11.0
 terminado==0.8.1
