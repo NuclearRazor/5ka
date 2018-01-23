@@ -26,10 +26,22 @@ def find_geckodriver():
     Finds geckodriver in executable paths. Looks in $PATH.
     '''
     exec_path = os.get_exec_path()
-    for path in exec_path:
-        queue = list(os.walk(path))
-        if 'geckodriver' in queue[0][2]:
-            return os.path.join(queue[0][0],'geckodriver')
+
+    # list compression version
+    _local_path = [os.path.join(i, u'geckodriver.exe') for i in exec_path if os.path.isfile(os.path.join(i, u'geckodriver.exe'))]
+
+    # regular version
+    # for i in exec_path:
+    #     _path = os.path.join(i, u'geckodriver.exe')
+    #     if os.path.isfile(_path):
+    #         print(os.path.isfile(_path))
+    #         print('Finded path: {}'.format(_path))
+
+    if len(_local_path) != 0:
+        print('Finded path {}'.format(_local_path[0]))
+        return _local_path[0]
+
+
 
 def text_input(field,string,driver):
     ''' 
@@ -83,3 +95,4 @@ if __name__ == '__main__':
         print('Dumped!')
     json_data = request_json(cookies)
     print(json_data)
+    find_geckodriver()
